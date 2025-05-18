@@ -30,10 +30,10 @@ export default async function CelebrityImagesPage({
   const defaultImage = imagesData.profiles?.[0]?.file_path;
 
   return (
-    <main className="p-6 md:px-20 mb-5 pt-20 h-screen text-white flex gap-6">
+    <main className="p-2 sm:p-6 md:px-20 mb-5 pt-20 h-screen space-y-6 sm:space-y-0 text-white sm:flex gap-6">
       <ImageProvider initialImage={defaultImage}>
         {/* Left 70% - Main Image + Name */}
-        <div className="w-[70%] flex flex-col bg-zinc-900 rounded-md">
+        <div className="sm:w-[70%] flex flex-col bg-zinc-900 rounded-md">
           <div className="flex justify-center">
             <MainImageDisplay />
           </div>
@@ -43,7 +43,7 @@ export default async function CelebrityImagesPage({
           />
 
           {/* Name + Avatar */}
-          <div className="flex items-center px-5 gap-4 py-4">
+          <div className="flex justify-center sm:justify-start items-center px-5 gap-4 py-4">
             <img
               src={`https://image.tmdb.org/t/p/w185${personData.profile_path}`}
               alt={personData.name}
@@ -59,7 +59,7 @@ export default async function CelebrityImagesPage({
         </div>
 
         {/* Right 30% - Thumbnails */}
-        <div className="w-[30%] bg-zinc-900 rounded-md p-4 flex flex-col">
+        <div className=" sm:w-[30%] bg-zinc-900 rounded-md p-4 flex flex-col">
           <div className="mb-4">
             <h2 className="text-2xl font-semibold text-white">Images</h2>
             <p className="text-sm pt-1 text-gray-400">

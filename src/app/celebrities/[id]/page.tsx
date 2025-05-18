@@ -39,15 +39,15 @@ export default async function CelebrityDetail({
     : null;
 
   return (
-    <main className="p-6 md:px-20 pt-20 text-white">
+    <div className="p-2 sm:p-6 md:px-20  text-white">
       {/* Header */}
-      <div className="flex flex-col md:flex-row gap-6 mb-10">
+      <div className="flex flex-col md:flex-row gap-6 mt-20 mb-10">
         {profileImage && (
-          <div className="md:w-[30%] w-full">
+          <div className="md:w-[30%] justify-center flex md:block">
             <img
               src={profileImage}
               alt={person.name}
-              className="w-full h-auto max-h-[500px] rounded shadow-lg object-cover"
+              className="w-auto md:w-full  h-auto max-h-[80vh] sm:max-h-[600px] rounded shadow-lg object-cover"
             />
           </div>
         )}
@@ -61,26 +61,29 @@ export default async function CelebrityDetail({
               {person.biography || "No biography available."}
             </p>
           </div>
-          <div className="flex pt-8 text-xl space-x-4">
+
+
+          <div className="sm:flex pt-8 text-xl space-x-4">
             <p className="mb-2">
-              <strong>Birthday:</strong>{" "}
+              <strong className="block sm:inline">Birthday:</strong>{" "}
               {person.birthday
                 ? format(new Date(person.birthday), "MMMM d, yyyy")
                 : "Unknown"}{" "}
               ({age||" _"} years old)
             </p>
             <p className="">
-              <strong>Place of Birth:</strong>{" "}
+              <strong className="block sm:inline ">Place of Birth:</strong>{" "}
               {person.place_of_birth || "Unknown"}
             </p>
           </div>
+
         </div>
       </div>
 
       {/* Gallery */}
       <div className="mb-10">
         <SectionHeader title="Images" href={`/celebrities/${id}/images`} />
-        <div className="flex overflow-x-auto space-x-4 px-6 mr-6 pb-2">
+        <div className="flex overflow-x-auto space-x-4 sm:px-6 sm:mr-6 pb-2">
           {imagesData.profiles.slice(0, 8).map((img: any, index: number) => (
             <div
               key={index}
@@ -98,8 +101,8 @@ export default async function CelebrityDetail({
 
       {/* Castings */}
 
-      <div className="my-20 mx-6">
-        <h2 className="text-2xl sm:text-4xl font-semibold mb-11">Known For</h2>
+      <div className="my-20 sm:mx-6">
+        <h2 className="text-2xl sm:text-4xl font-semibold mb-5 sm:mb-11">Known For</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {creditsData.cast
             .filter((item: any) => item.media_type === "movie")
@@ -123,6 +126,6 @@ export default async function CelebrityDetail({
             ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 }

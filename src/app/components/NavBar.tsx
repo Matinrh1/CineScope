@@ -3,7 +3,11 @@
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDown,
+  faSearch,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { RippleButton } from "./RippleButton";
 import { useRouter } from "next/navigation";
@@ -11,6 +15,9 @@ import { useRouter } from "next/navigation";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isGenresOpen, setIsGenresOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+  const [showSearchInput, setShowSearchInput] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownListRef = useRef<HTMLUListElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -21,7 +28,6 @@ const Navbar = () => {
   const [scrollIndicatorTop, setScrollIndicatorTop] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
-  const isUserTypingRef = useRef(true);
 
   type SearchResult = {
     id: number;
@@ -208,27 +214,192 @@ const Navbar = () => {
 
   return (
     <nav
-      className={` w-full fixed z-20 hover:bg-black  text-white hover:py-4 hover:opacity-90 transition-all duration-300 ${
-        isScrolled ? "py-2 opacity-75 bg-black" : "py-4 bg-transparent"
+      className={` w-full fixed z-20  lg:hover:bg-black  text-white lg:hover:py-4 hover:opacity-90 transition-all duration-300 ${
+        isScrolled
+          ? "lg:py-2 opacity-75 bg-black"
+          : "py-2 lg:py-4 lg:bg-transparent"
       }`}
     >
-      <div className="mx-5 flex justify-between items-center">
-        <div className="text-xl font-bold">
-          <Link href="/">
-            <button
-              className={`relative text-white after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:h-[1px] after:bg-white after:transition-all after:duration-300
+      <div className="mx-2 sm:mx-5 flex justify-between items-center">
+        <div className="flex">
+          <button
+            className="text-white cursor-pointer px-2 lg:hidden text-2xl"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          >
+            <FontAwesomeIcon icon={faBars} />
+          </button>
+          <div className="text-lg sm:text-xl p-2 font-bold">
+            <Link href="/">
+              <button
+                className={`relative text-white after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:h-[1px] after:bg-white after:transition-all after:duration-300
               ${
                 pathname === "/"
-                  ? "after:w-full"
+                  ? "lg:after:w-full"
                   : "after:w-0 hover:after:w-full"
               }
                 `}
-            >
-              CineScope
-            </button>
-          </Link>
+              >
+                CineScope
+              </button>
+            </Link>
+          </div>
         </div>
-        <div className="flex items-center space-x-6">
+
+        {isMobileMenuOpen && (
+          <div className="fixed top-0 left-0 w-full h-screen bg-black text-white p-4 z-50 overflow-hidden lg:hidden">
+            <button
+              className="text-white mb-4 text-2xl"
+              onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            >
+              <FontAwesomeIcon icon={faBars} />
+            </button> 
+
+            <div className="flex flex-col space-y-8">
+              <Link href="/">
+                <span
+                  className="text-white hover:text-gray-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Home
+                </span>
+              </Link>
+              <Link href="/discover-movies">
+                <span
+                  className="text-white hover:text-gray-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Discover Movies
+                </span>
+              </Link>
+              <Link href="/top-rated">
+                <span
+                  className="text-white hover:text-gray-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Top Rated
+                </span>
+              </Link>
+              <Link href="/celebrities">
+                <span
+                  className="text-white hover:text-gray-300"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Celebrities
+                </span>
+              </Link>
+            
+              <div>
+                <p className="text-lg text-gray-400 mb-3">Genres</p>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    "action",
+                    "adventure",
+                    "animation",
+                    "comedy",
+                    "crime",
+                    "documentary",
+                    "drama",
+                    "family",
+                    "fantasy",
+                    "history",
+                    "horror",
+                    "science fiction",
+                    "music",
+                    "mystery",
+                    "romance",
+                    "thriller",
+                    "war",
+                    "western",
+                  ].map((genre) => (
+                    <Link href={`/genres/${genre}`} key={genre}>
+                      <span
+                        className="capitalize text-white text-sm"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {genre}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div
+          className="relative lg:hidden flex items-center group"
+          ref={searchDropdownRef}
+        >
+          {!showSearchInput ? (
+            <button
+              onClick={() => setShowSearchInput(true)}
+              className="text-white text-xl"
+            >
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          ) : (
+            <>
+              <input
+                ref={inputRef}
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && searchTerm.trim() !== "") {
+                    router.push(
+                      `/search/${encodeURIComponent(searchTerm.trim())}`
+                    );
+                    setShowSearchInput(false);
+                  }
+                }}
+                onBlur={() => {
+                  setTimeout(() => setShowSearchInput(false), 200);
+                }}
+                placeholder="Search..."
+                autoFocus
+                className={`
+           placeholder:text-white text-white rounded px-3 py-1 border-2 border-white focus:outline-none
+          transition-all duration-300 w-40 sm:w-80 
+        `}
+              />
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="absolute right-3 text-white pointer-events-none"
+              />
+            </>
+          )}
+
+          {showDropdown && searchResults.length > 0 && (
+            <div className="absolute top-full left-0 w-full bg-black text-white border border-gray-700 mt-1 rounded shadow-md z-50 max-h-80 overflow-y-auto">
+              <ul>
+                {searchResults.map((result) => (
+                  <li
+                    key={`${result.media_type}-${result.id}`}
+                    className="block px-4 py-2 hover:bg-gray-800 transition-colors cursor-pointer"
+                    onClick={() => {
+                      setShowDropdown(false);
+                      setSearchTerm(result.title || result.name || "");
+                      setShowSearchInput(false);
+                      router.push(
+                        `/search/${encodeURIComponent(
+                          result.title || result.name || ""
+                        )}`
+                      );
+                    }}
+                  >
+                    {result.media_type === "movie" ? (
+                      <>🎬 {result.title}</>
+                    ) : (
+                      <>👤 {result.name}</>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        <div className="hidden lg:flex items-center space-x-6 ">
           <div
             className="relative flex items-center group"
             ref={searchDropdownRef}

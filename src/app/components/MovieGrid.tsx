@@ -1,4 +1,3 @@
-
 import MovieCard from "./MovieCard";
 import { Movie } from "../types/movie";
 

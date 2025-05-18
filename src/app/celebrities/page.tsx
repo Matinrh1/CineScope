@@ -50,8 +50,8 @@ export default async function CelebritiesPage({
   };
 
   return (
-    <main className="p-6 md:px-20 pt-20">
-      <h1 className="text-3xl py-5 font-bold text-white mb-4">
+    <main className="p-2 sm:p-6 md:px-20 pt-20">
+      <h1 className="text-2xl sm:text-3xl py-5 font-bold text-white mb-4">
         Popular Celebrities
       </h1>
 

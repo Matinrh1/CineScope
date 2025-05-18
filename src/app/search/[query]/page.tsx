@@ -39,20 +39,20 @@ export default async function SearchPage({ params }: SearchPageProps) {
   });
 
   return (
-    <div className="sm:px-20 py-20">
+    <div className="px-2 sm:px-20 py-20">
       <h1 className="text-white text-2xl mb-6">
         Search results for: <strong>{decodedQuery}</strong>
       </h1>
 
       <div>
-        <h2 className="text-3xl font-bold text-white mt-8 py-2 mb-4">Movies</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-white mt-8 py-2 mb-4">Movies</h2>
         {sortedMovies.length > 0 ? (
           <MoviePreviewGrid movies={sortedMovies.slice(0,20)} />
         ) : (
           <p className="text-white">No movies found for <strong>{decodedQuery}</strong>.</p>
         )}
 
-        <h2 className="text-3xl font-bold text-white mt-8 py-2 mb-4">Celebrities</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-white mt-8 py-2 mb-4">Celebrities</h2>
         {sortedPeople.length > 0 ? (
           <PeopleGrid people={sortedPeople.slice(0,8)} />
         ) : (

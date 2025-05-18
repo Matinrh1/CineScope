@@ -21,7 +21,7 @@ const sortOptions = [
 export default function GenreToolbar({ title, sortBy, onSortChange }: GenreToolbarProps) {
   return (
     <div className="flex items-center justify-between">
-      <h2 className="text-xl capitalize text-white px-5 sm:text-3xl font-bold py-5 mb-4">
+      <h2 className="text-xl capitalize text-white px-2 sm:px-5 sm:text-3xl font-bold py-5 mb-4">
         {title}
       </h2>
       <div className="flex pr-1 sm:pr-5 lg:pr-8 justify-end mb-4">

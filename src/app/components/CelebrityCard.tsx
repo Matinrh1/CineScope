@@ -20,7 +20,7 @@ export function CelebrityCard({ person }: { person: any }) {
           className="w-full h-auto"
         />
         <div className="p-2 text-center">
-          <p className="font-semibold py-3 sm:text-lg text-white">{person.name}</p>
+          <p className="font-semibold sm:py-3 md:text-lg text-white">{person.name}</p>
         </div>
       </div>
     </RippleButton>
