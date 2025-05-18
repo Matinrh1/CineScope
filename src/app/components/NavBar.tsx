@@ -254,7 +254,7 @@ const Navbar = () => {
               <FontAwesomeIcon icon={faBars} />
             </button> 
 
-            <div className="flex flex-col space-y-8">
+            <div className="flex flex-col space-y-8 ">
               <Link href="/">
                 <span
                   className="text-white hover:text-gray-300"
@@ -279,17 +279,19 @@ const Navbar = () => {
                   Top Rated
                 </span>
               </Link>
-              <Link href="/celebrities">
+              <Link href="/celebrities" className="border-b pb-8 border-gray-600">
                 <span
-                  className="text-white hover:text-gray-300"
+                  className="text-white hover:text-gray-300 "
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Celebrities
                 </span>
               </Link>
-            
+ 
+               
+             
               <div>
-                <p className="text-lg text-gray-400 mb-3">Genres</p>
+                <p className="text-lg text-gray-400 mb-5">Genres</p>
                 <div className="grid grid-cols-2 gap-3">
                   {[
                     "action",
