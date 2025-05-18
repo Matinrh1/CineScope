@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import MovieCard from "@/app/components/MovieCard";
-import Image from "next/image";
 import SectionHeader from "@/app/components/SectionHeader";
 import { format } from "date-fns";
 

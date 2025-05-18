@@ -2,9 +2,7 @@ import PeopleGrid from './components/PeopleGrid';
 import SectionHeader from './components/SectionHeader';
 import { fetchTrendingMoviesDaily, fetchTopRatedMovies, fetchPopularPeople,fetchMoviesByGenre } from './utils/lib/tmdb';
 import { GENRE_IDS } from './utils/lib/tmdbGeners'
-import { Stack } from '@mui/material';
 import { FeaturedMovie } from './components/FeaturedMovie';
-import Link from 'next/link';
 import MoviePreviewGrid from './components/MoviePreviewGrid';
 export default async function Home() {
   const [trendingMovies, topRatedMovies, popularPeople, actionMovies, adventureMovies, animationMovies, comedyMovies] =
