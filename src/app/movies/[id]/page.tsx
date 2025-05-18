@@ -107,7 +107,7 @@ export default async function MoviePage({
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
         </div>
 
-        <div className="absolute bottom-10 left-6 space-y-3 sm:space-y-6 text-white z-10 max-w-3xl">
+        <div className="absolute bottom-10 left-2 sm:left-6 space-y-3 sm:space-y-6 text-white z-10 max-w-3xl">
           <div className="sm:flex space-y-1 sm:items-end">
             <h1 className="text-2xl sm:text-3xl md:text-4xl  lg:text-5xl font-bold">
               {movie.title}
@@ -129,7 +129,7 @@ export default async function MoviePage({
             <span className="sm:flex flex-wrap gap-2 items-center">
               <strong className="whitespace-nowrap">Genres:</strong>
               {movie.genres.map((genre, idx) => (
-               <div className=""> 
+               <div key={genre.id}> 
                  <RippleButton key={genre.id}>
                   <Link
                     href={`/genres/${genre.name.toLowerCase()}`}
