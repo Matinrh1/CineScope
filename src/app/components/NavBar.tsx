@@ -351,9 +351,9 @@ const Navbar = () => {
                   );
                 }
               }}
-                // onBlur={() => {
-                //   setTimeout(() => setShowSearchInput(false), 200);
-                // }}
+                onBlur={() => {
+                  setTimeout(() => setShowSearchInput(false), 200);
+                }}
                 placeholder="Search..."
                 autoFocus
                 className={`

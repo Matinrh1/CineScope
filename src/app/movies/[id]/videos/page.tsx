@@ -32,15 +32,15 @@ export default async function MovieVideosPage({
   if (videosData.results.length === 0) return notFound();
 
   return (
-    <main className="p-6 md:px-20 mb-5 pt-20 h-screen text-white flex gap-6">
+    <main className="p-2 md:px-20 mb-5 pt-20 h-screen text-white md:flex gap-6">
       <VideoProvider initialVideoKey={videosData.results[0].key}>
         {/* Left 70% - Main Video */}
-        <div className="w-[70%] flex flex-col bg-zinc-900 rounded-md">
+        <div className="w-full md:w-[70%] flex flex-col bg-zinc-900 rounded-md">
           <div className="flex justify-center">
             <VideoPlayer /> 
           </div>
           <VideoSwiperController videos={videosData.results} />
-          <div className="flex items-center px-5 gap-4 py-4">
+          <div className="flex justify-center md:justify-start items-center px-5 gap-4 py-4">
             <img
               src={`https://image.tmdb.org/t/p/w185${movieData.poster_path}`}
               alt={movieData.title}
@@ -56,7 +56,7 @@ export default async function MovieVideosPage({
         </div>
 
         {/* Right 30% - Video Thumbnails */}
-        <div className="w-[30%] bg-zinc-900 rounded-md p-4 flex flex-col">
+        <div className="md:w-[30%] mt-5 md:mt-0 bg-zinc-900 rounded-md p-4 flex flex-col">
           <div className="mb-4">
             <h2 className="text-2xl font-semibold text-white">Videos</h2>
             <p className="text-sm pt-1 text-gray-400">
