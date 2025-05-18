@@ -30,10 +30,10 @@ export default async function MovieImagesPage({
   const defaultImage = imagesData.backdrops?.[0]?.file_path;
 
   return (
-    <main className="p-6 md:px-20 mb-5 pt-20 h-screen text-white flex gap-6">
+    <main className="p-2  md:px-20 mb-5 pt-20 h-screen space-y-6 sm:space-y-0 text-white sm:flex gap-6">
       <ImageProvider initialImage={defaultImage}>
-        {/* Left 70% - Main Image + Movie Info */}
-        <div className="w-[70%] flex flex-col bg-zinc-900 rounded-md">
+        {/* Left Section - Main Image + Movie Info */}
+        <div className="sm:w-[70%] flex flex-col bg-zinc-900 rounded-md">
           <div className="flex justify-center">
             <MainImageDisplay />
           </div>
@@ -43,7 +43,7 @@ export default async function MovieImagesPage({
           />
 
           {/* Poster + Title */}
-          <div className="flex items-center px-5 gap-4 py-4">
+          <div className="flex justify-center sm:justify-start items-center px-5 gap-4 py-4">
             <img
               src={`https://image.tmdb.org/t/p/w185${movieData.poster_path}`}
               alt={movieData.title}
@@ -58,8 +58,8 @@ export default async function MovieImagesPage({
           </div>
         </div>
 
-        {/* Right 30% - Thumbnails */}
-        <div className="w-[30%] bg-zinc-900 rounded-md p-4 flex flex-col">
+        {/* Right Section - Thumbnails */}
+        <div className="sm:w-[30%] bg-zinc-900 rounded-md p-4 flex flex-col">
           <div className="mb-4">
             <h2 className="text-2xl font-semibold text-white">Images</h2>
             <p className="text-sm pt-1 text-gray-400">
