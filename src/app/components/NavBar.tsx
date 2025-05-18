@@ -345,16 +345,15 @@ const Navbar = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" && searchTerm.trim() !== "") {
-                    router.push(
-                      `/search/${encodeURIComponent(searchTerm.trim())}`
-                    );
-                    setShowSearchInput(false);
-                  }
-                }}
-                onBlur={() => {
-                  setTimeout(() => setShowSearchInput(false), 200);
-                }}
+                if (e.key === "Enter" && searchTerm.trim() !== "") {
+                  router.push(
+                    `/search/${encodeURIComponent(searchTerm.trim())}`
+                  );
+                }
+              }}
+                // onBlur={() => {
+                //   setTimeout(() => setShowSearchInput(false), 200);
+                // }}
                 placeholder="Search..."
                 autoFocus
                 className={`
@@ -376,10 +375,9 @@ const Navbar = () => {
                   <li
                     key={`${result.media_type}-${result.id}`}
                     className="block px-4 py-2 hover:bg-gray-800 transition-colors cursor-pointer"
-                    onClick={() => {
+                    onMouseDown={() => {
                       setShowDropdown(false);
                       setSearchTerm(result.title || result.name || "");
-                      setShowSearchInput(false);
                       router.push(
                         `/search/${encodeURIComponent(
                           result.title || result.name || ""
