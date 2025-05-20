@@ -34,16 +34,16 @@ export default async function Home() {
       <SectionHeader title="Popular People" href="/celebrities" />
       <PeopleGrid people={popularPeople?.slice(0, 20) ?? []} />
 
-      <SectionHeader title="Action Movies" href="/genre/action" />
+      <SectionHeader title="Action Movies" href="/genres/action" />
       <MoviePreviewGrid movies={actionMovies?.slice(0, 7) ?? []} />
 
-      <SectionHeader title="Adventure Movies" href="/genre/adventure" />
+      <SectionHeader title="Adventure Movies" href="/genres/adventure" />
       <MoviePreviewGrid movies={adventureMovies?.slice(0, 7) ?? []} />
 
-      <SectionHeader title="Animation Movies" href="/genre/animation"/>
+      <SectionHeader title="Animation Movies" href="/genres/animation"/>
       <MoviePreviewGrid movies={animationMovies?.slice(0, 7) ?? []} />
 
-      <SectionHeader title="Comedy Movies" href="/genre/comedy" />
+      <SectionHeader title="Comedy Movies" href="/genres/comedy" />
       <MoviePreviewGrid movies={comedyMovies?.slice(0, 7) ?? []} />
 
     </main>
